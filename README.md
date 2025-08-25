@@ -35,6 +35,7 @@ async function loadProfile() {
 }
 </code>
 ## Hent liste med query-params
+<code>
 import { api } from "../api/apiClient";
 
 async function loadBookings() {
@@ -48,20 +49,23 @@ async function loadBookings() {
     console.error("Fejl ved hentning:", e);
   }
 }
-
+</code>
 ## Opret / redigér / slet
 // POST (opret)
+<code>
 await api.post("/Bookings", { startDate: "...", endDate: "...", roomId: 5 }, { auth: true });
-
+</code>
 // PUT (opdater)
+<code>
 await api.put("/Bookings/123", { status: "confirmed" }, { auth: true });
-
+</code>
 // DELETE
+<code>
 await api.del("/Bookings/123", { auth: true });
-
+</code>
 # CORS - Udviklings‑workaround: Vite dev‑proxy (slipper for CORS lokalt)
 Åben vite.config.js og ændre url til jeres projekts api url:
-
+<code>
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
@@ -78,19 +82,20 @@ export default defineConfig({
     },
   },
 });
-
-Nu rammer api.post("/Users/login", ...) → http://localhost:5174/api/Users/login,
-som Vite sender videre til https://karambit-api.mercantec.tech/api/Users/login uden CORS‑blokering i browseren.
-I produktion sætter du VITE_API_URL til din rigtige backend‑URL igen (CORS skal stadig være korrekt på serveren i prod).
+</code>
+Nu rammer api.post("/Users/login", ...) → http://localhost:5174/api/Users/login,</br>
+som Vite sender videre til https://karambit-api.mercantec.tech/api/Users/login uden CORS‑blokering i browseren.</br>
+I produktion sætter du VITE_API_URL til din rigtige backend‑URL igen (CORS skal stadig være korrekt på serveren i prod).</br>
 
 # Tailwind (er installeret for jer)
 ## Installation (Tailwind v3 – stabil version)
-Installer Tailwind + PostCSS + Autoprefixer
+Installer Tailwind + PostCSS + Autoprefixer</br>
 I projektroden (samme mappe som package.json):
-
+</br>
+<code>
 npm install -D tailwindcss@3 postcss autoprefixer
 npx tailwindcss init -p
-
+</code>
 Det opretter to filer:
 	•	tailwind.config.js
 	•	postcss.config.js
