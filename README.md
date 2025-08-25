@@ -12,7 +12,6 @@ Den kaldes således:
 
 ## Login (Post)
 <code> import { api, setToken } from "../api/apiClient";
-
 async function handleLogin(email, password) {
   try {
     const res = await api.post("/Users/login", { email, password });
@@ -24,7 +23,7 @@ async function handleLogin(email, password) {
 }
 </code>
 ## Hent profil (/me)
-import { api } from "../api/apiClient";
+<code> import { api } from "../api/apiClient";
 
 async function loadProfile() {
   try {
@@ -34,7 +33,7 @@ async function loadProfile() {
     console.error("Kunne ikke hente profil:", e);
   }
 }
-
+</code>
 ## Hent liste med query-params
 import { api } from "../api/apiClient";
 
