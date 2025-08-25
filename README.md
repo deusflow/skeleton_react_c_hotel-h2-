@@ -1,3 +1,66 @@
+# CORS - Udviklings‑workaround: Vite dev‑proxy (slipper for CORS lokalt)
+Åben vite.config.js og ændre url til jeres projekts api url:
+
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+
+export default defineConfig({
+  plugins: [react()],
+  server: {
+    port: 5174,
+    proxy: {
+      "/api": {
+        target: "https://karambit-api.mercantec.tech",
+        changeOrigin: true,
+        secure: true,
+      },
+    },
+  },
+});
+
+Nu rammer api.post("/Users/login", ...) → http://localhost:5174/api/Users/login,
+som Vite sender videre til https://karambit-api.mercantec.tech/api/Users/login uden CORS‑blokering i browseren.
+I produktion sætter du VITE_API_URL til din rigtige backend‑URL igen (CORS skal stadig være korrekt på serveren i prod).
+
+# Tailwind (er installeret for jer)
+## Installation (Tailwind v3 – stabil version)
+Installer Tailwind + PostCSS + Autoprefixer
+I projektroden (samme mappe som package.json):
+
+npm install -D tailwindcss@3 postcss autoprefixer
+npx tailwindcss init -p
+
+Det opretter to filer:
+	•	tailwind.config.js
+	•	postcss.config.js
+
+## Konfiguration
+### tailwind.config.js
+Åbn og indsæt:
+
+// tailwind.config.js
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,jsx,ts,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+};
+
+### postcss.config.js
+Åbn og indsæt:
+
+// postcss.config.js
+export default {
+  plugins: {
+    tailwindcss: {},
+    autoprefixer: {},
+  },
+};
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
