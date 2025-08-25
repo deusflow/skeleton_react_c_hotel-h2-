@@ -1,3 +1,65 @@
+# Pages
+Jeg har oprettet nogle sider til jer. I kan vælge at bruge dem eller lave jeres egen. Men husk at ændre routes, hvis i ændre filnavne
+# Routes 
+## index.js
+Indeholder alle routes fra mit eksempel, så i har et start sted.
+## RequireAuth.js
+Benyttes af routes for at tjekke om brugeren er logget ind
+# apiClient.js
+
+apiClient er oprettet for jer. Den ligger i mappen api.
+Den kaldes således:
+
+## Login (Post)
+import { api, setToken } from "../api/apiClient";
+
+async function handleLogin(email, password) {
+  try {
+    const res = await api.post("/Users/login", { email, password });
+    // backend svarer fx med { access_token: "..." }
+    setToken(res.access_token);
+  } catch (e) {
+    console.error("Login fejlede:", e);
+  }
+}
+
+## Hent profil (/me)
+import { api } from "../api/apiClient";
+
+async function loadProfile() {
+  try {
+    const me = await api.get("/Users/me", { auth: true });
+    console.log("Brugerprofil:", me);
+  } catch (e) {
+    console.error("Kunne ikke hente profil:", e);
+  }
+}
+
+## Hent liste med query-params
+import { api } from "../api/apiClient";
+
+async function loadBookings() {
+  try {
+    const res = await api.get("/Bookings", {
+      auth: true,
+      params: { page: 1, pageSize: 10, search: "tesla" }
+    });
+    console.log("Bookinger:", res.items);
+  } catch (e) {
+    console.error("Fejl ved hentning:", e);
+  }
+}
+
+## Opret / redigér / slet
+// POST (opret)
+await api.post("/Bookings", { startDate: "...", endDate: "...", roomId: 5 }, { auth: true });
+
+// PUT (opdater)
+await api.put("/Bookings/123", { status: "confirmed" }, { auth: true });
+
+// DELETE
+await api.del("/Bookings/123", { auth: true });
+
 # CORS - Udviklings‑workaround: Vite dev‑proxy (slipper for CORS lokalt)
 Åben vite.config.js og ændre url til jeres projekts api url:
 
@@ -61,17 +123,3 @@ export default {
   },
 };
 
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-
-# skeleton_react_c_hotel-h2-
