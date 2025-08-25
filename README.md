@@ -1,3 +1,8 @@
+# React + vite installation med clone/fork
+	1.	git clone ... henter hele projektet inklusiv git-historik.
+	2.	åben folder og terminal -> skriv: npm install (eller yarn install) henter alle afhængigheder baseret på package.json.
+	3.	npm run dev starter Vite’s dev-server (typisk på http://localhost:5173)  
+
 # Pages
 Jeg har oprettet nogle sider til jer. I kan vælge at bruge dem eller lave jeres egen. Men husk at ændre routes, hvis i ændre filnavne
 # Routes 
