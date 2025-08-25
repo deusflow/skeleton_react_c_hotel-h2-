@@ -11,7 +11,7 @@ apiClient er oprettet for jer. Den ligger i mappen api.
 Den kaldes således:
 
 ## Login (Post)
-import { api, setToken } from "../api/apiClient";
+<code> import { api, setToken } from "../api/apiClient";
 
 async function handleLogin(email, password) {
   try {
@@ -22,7 +22,7 @@ async function handleLogin(email, password) {
     console.error("Login fejlede:", e);
   }
 }
-
+</code>
 ## Hent profil (/me)
 import { api } from "../api/apiClient";
 
