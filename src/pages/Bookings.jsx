@@ -31,8 +31,8 @@ export default function Bookings() {
     const loadBookings = async () => {
         setLoading(true);
         try {
-            // Запрос на получение бронирований с параметрами
-            const response = await request('/Bookings', {
+            // GET request to /bookings endpoint with search and pagination params
+            const response = await request('/bookings', {
                 auth: true,
                 params: {
                     page: page,

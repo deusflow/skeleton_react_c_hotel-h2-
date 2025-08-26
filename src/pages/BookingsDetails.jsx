@@ -18,8 +18,8 @@ export default function BookingDetailsPage() {
 
     const loadBookingDetails = async () => {
         try {
-            // Load details of the specific booking
-            const bookingData = await request(`/Bookings/${id}`, { auth: true });
+            // GET request to load specific booking details by ID
+            const bookingData = await request(`/bookings/${id}`, { auth: true });
             setBooking(bookingData);
         } catch (err) {
             setError('Error loading booking details: ' + err.message);

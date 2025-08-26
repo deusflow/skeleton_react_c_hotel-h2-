@@ -16,13 +16,13 @@ export default function LoginPage() {
         setError('');
 
         try {
-            // POST request to backend for authentication
-            const response = await request('/Users/login', {
+            // POST request to /auth/login endpoint as per requirements
+            const response = await request('/auth/login', {
                 method: 'POST',
                 json: { email, password }
             });
 
-            // Save the token and navigate to /me
+            // Save JWT token and redirect to /me page
             setToken(response.access_token);
             navigate('/me');
         } catch (err) {

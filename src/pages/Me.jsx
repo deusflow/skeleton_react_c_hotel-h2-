@@ -15,11 +15,11 @@ export default function MePage() {
     const loadUserData = async () => {
         try {
             // Загружаем профиль пользователя
-            const userProfile = await request('/Users/me', { auth: true });
+            const userProfile = await request('/auth/me', { auth: true });
             setUser(userProfile);
 
             // Загружаем последние бронирования
-            const bookingsData = await request('/Bookings', {
+            const bookingsData = await request('/bookings', {
                 auth: true,
                 params: { page: 1, pageSize: 5 } // Последние 5 бронирований
             });
